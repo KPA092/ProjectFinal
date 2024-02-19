@@ -30,11 +30,11 @@ class ProductController extends Controller
 	public function addToCart(Product $product)
 	{
 		CartItem::create([
-			'user_id' => auth()->id(), // Obtener el ID del usuario autenticado
+			'user_id' => auth()->id(),
 			'product_id' => $product->id,
-			'quantity' => 1, // Puedes definir una cantidad por defecto o dejar que el usuario especifique
-			'price_unit' => $product->price, // Precio unitario del producto
-			'price_total' => $product->price // Precio total inicialmente igual al precio unitario
+			'quantity' => 1,
+			'price_unit' => $product->price,
+			'price_total' => $product->price
 		]);
 
 		return Redirect::route('cart.index')->with('success', 'Producto agregado al carrito.');
@@ -68,10 +68,8 @@ class ProductController extends Controller
 
 	public function showAll($id)
 	{
-		// Cargar el producto por su ID
 		$product = Product::findOrFail($id);
 
-		// Devolver la vista con los datos del producto
 		return view('product', compact('product'));
 	}
 

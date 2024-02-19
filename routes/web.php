@@ -42,7 +42,6 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('/show/{product}', 'show')->name('products.show')->middleware('can:products.show');
 		Route::post('/store', 'store')->name('products.store')->middleware('can:products.store');
 		Route::post('/update/{product}', 'update')->name('products.update')->middleware('can:products.update');
-		// Route::put('/{product}', 'update')->name('products.update')->middleware('can:products.update');
 		Route::delete('/{product}', 'destroy')->name('products.destroy')->middleware('can:products.destroy');
 
 		//add to cart
@@ -66,6 +65,5 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::put('/cart/update/{id}', 'update')->name('cart.update');
 		Route::delete('/cart/remove/{id}', 'destroy')->name('cart.destroy');
 		Route::delete('/cart/clear', 'clear')->name('cart.clear');
-
 	});
 });

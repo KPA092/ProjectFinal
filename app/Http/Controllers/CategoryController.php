@@ -43,13 +43,10 @@ class CategoryController extends Controller
 
 	public function showAll($id)
 	{
-		// Cargar la categoría por su ID
 		$category = Category::findOrFail($id);
 
-		// Cargar los productos asociados a la categoría
 		$products = $category->products;
 
-		// Devolver la vista con los datos de la categoría y los productos
 		return view('category', compact('category', 'products'));
 	}
 

@@ -73,7 +73,7 @@
                     <!-- car button -->
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('cart.index') }}">
-                            <i class="fas fa-shopping-cart"></i> <!-- Icono de carrito de Font Awesome -->
+                            <i class="fas fa-shopping-cart"></i>
                             <span class="badge bg-primary">
                                 @auth
                                     {{ count(auth()->user()->cartItems) }}

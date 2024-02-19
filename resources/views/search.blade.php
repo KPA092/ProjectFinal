@@ -41,7 +41,7 @@
         document.getElementById('search-form').addEventListener('submit', function(event) {
             var queryInput = document.querySelector('input[name="query"]');
             if (queryInput.value.trim() === '') {
-                event.preventDefault(); // Detener el envío del formulario si el campo de búsqueda está vacío
+                event.preventDefault();
             }
         });
     </script>
