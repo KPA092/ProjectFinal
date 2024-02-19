@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Http\Traits\UploadFile;
+use App\Models\CartItem;
 use App\Models\Category;
 
+use App\Http\Traits\UploadFile;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Product\ProductRequest;
 use App\Http\Requests\Product\ProductUpdateRequest;
 
@@ -24,7 +26,19 @@ class ProductController extends Controller
 		return view('index', compact('products'));
 	}
 
+	// add to cart
+	public function addToCart(Product $product)
+	{
+		CartItem::create([
+			'user_id' => auth()->id(), // Obtener el ID del usuario autenticado
+			'product_id' => $product->id,
+			'quantity' => 1, // Puedes definir una cantidad por defecto o dejar que el usuario especifique
+			'price_unit' => $product->price, // Precio unitario del producto
+			'price_total' => $product->price // Precio total inicialmente igual al precio unitario
+		]);
 
+		return Redirect::route('cart.index')->with('success', 'Producto agregado al carrito.');
+	}
 
 	public function index()
 	{

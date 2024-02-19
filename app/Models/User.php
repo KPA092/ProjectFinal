@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\CartItem;
 use App\Models\Purchase;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -61,5 +63,10 @@ class User extends Authenticatable
 	public function purchases()
 	{
 		return $this->hasMany(Purchase::class, 'user_id', 'id');
+	}
+
+	public function cartItems()
+	{
+		return $this->hasMany(CartItem::class);
 	}
 }

@@ -18,7 +18,10 @@
                             <p class="mb-1">Stock: {{ $product->stock }}</p>
                         </div>
                         <div class="card-footer d-grid gap-2">
-                            <a href="{{ route('product.show', $product->id) }}" class="btn btn-primary">Abrir</a>
+                            <a href="{{ route('product.show', $product->id) }}" class="btn btn-primary">Ver Detalles del
+                                Producto</a>
+                            <a href="{{ route('product.add-to-cart', ['product' => $product->id]) }}"
+                                class="btn btn-primary">Agregar al Carrito</a>
                         </div>
                     </div>
                 </div>

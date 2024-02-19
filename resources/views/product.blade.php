@@ -9,6 +9,8 @@
                 <p class="mb-2">Descripción: {{ $product->description }}</p>
                 <p class="mb-2">Stock: {{ $product->stock }}</p>
             </div>
+			<a href="{{ route('product.add-to-cart', ['product' => $product->id]) }}"
+				class="btn btn-primary">Agregar al Carrito</a>
         </div>
     </div>
 </x-app>

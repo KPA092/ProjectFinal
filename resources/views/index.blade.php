@@ -33,6 +33,8 @@
                                     </div>
                                     <a href="{{ route('product.show', ['product' => $product->id]) }}"
                                         class="btn btn-primary">Ver Detalles del Producto</a>
+                                    <a href="{{ route('product.add-to-cart', ['product' => $product->id]) }}"
+                                        class="btn btn-primary">Agregar al Carrito</a>
                                 </div>
                             </div>
                         @endforeach

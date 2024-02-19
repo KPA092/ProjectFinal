@@ -17,6 +17,7 @@ class RoleAndPermissionSeeder extends Seeder
 			'products.store',
 			'products.update',
 			'products.destroy',
+			'product.add-to-cart',
 			'categories.index',
 			'categories.get-all',
 			'categories.get-all-dt',
@@ -25,7 +26,13 @@ class RoleAndPermissionSeeder extends Seeder
 			'categories.edit',
 			'categories.update',
 			'categories.destroy',
+			'cart_item.index',
+			'cart_item.update',
+			'cart_item.store',
+			'cart_item.destroy',
+
 		];
+
 		$permissionsAdmin = array_merge([
 			'users.index',
 			'users.create',

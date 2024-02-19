@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
-
+                <!-- Otros elementos del menú -->
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -39,7 +39,6 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
                             @role('admin')
                                 {{-- User --}}
                                 <a class="dropdown-item" href="{{ route('users.index') }}">
@@ -70,6 +69,19 @@
                             </form>
                         </div>
 
+                    </li>
+                    <!-- car button -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('cart.index') }}">
+                            <i class="fas fa-shopping-cart"></i> <!-- Icono de carrito de Font Awesome -->
+                            <span class="badge bg-primary">
+                                @auth
+                                    {{ count(auth()->user()->cartItems) }}
+                                @else
+                                    0
+                                @endauth
+                            </span>
+                        </a>
                     </li>
                 @endguest
             </ul>

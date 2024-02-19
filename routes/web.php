@@ -3,6 +3,7 @@
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SearchController;
@@ -36,13 +37,16 @@ Route::group(['middleware' => ['auth']], function () {
 	});
 
 	// Products
-	Route::group(['prefix' => 'products', 'controller' => ProductController::class], function () {
+	Route::group(['prefix' => 'products', 'middleware', 'controller' => ProductController::class], function () {
 		Route::get('/', 'index')->name('products.index')->middleware('can:products.index');
 		Route::get('/show/{product}', 'show')->name('products.show')->middleware('can:products.show');
 		Route::post('/store', 'store')->name('products.store')->middleware('can:products.store');
 		Route::post('/update/{product}', 'update')->name('products.update')->middleware('can:products.update');
 		// Route::put('/{product}', 'update')->name('products.update')->middleware('can:products.update');
 		Route::delete('/{product}', 'destroy')->name('products.destroy')->middleware('can:products.destroy');
+
+		//add to cart
+		Route::get('/product/add-to-cart/{product}', 'addToCart')->name('product.add-to-cart');
 	});
 
 	// Categories
@@ -54,5 +58,14 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::post('/', 'store')->name('categories.store')->middleware('can:categories.store');
 		Route::put('/{category}', 'update')->name('categories.update')->middleware('can:categories.update');
 		Route::delete('/{category}', 'destroy')->name('categories.destroy')->middleware('can:categories.destroy');
+	});
+
+	//CartItem Methods
+	Route::group(['prefix' => 'cart_item', 'middleware', 'controller' => CartController::class], function () {
+		Route::get('/cart', 'index')->name('cart.index');
+		Route::put('/cart/update/{id}', 'update')->name('cart.update');
+		Route::delete('/cart/remove/{id}', 'destroy')->name('cart.destroy');
+		Route::delete('/cart/clear', 'clear')->name('cart.clear');
+
 	});
 });
